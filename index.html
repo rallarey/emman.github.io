@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Image Background Changer</title>
+  <style>
+    body {
+      background-size: cover;
+      /*transition: background 0.5s ease;*/
+    }
+    video {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        transition: opacity 2s ease; /* Adjust the transition duration as needed */
+      }
+  </style>
+</head>
+<body>
+
+<script>
+  // Array of image URLs
+  const mediaList = [
+    'img/minecraft_1.png',
+    'img/minecraft_2.png',
+    'img/minecraft_3.png',
+    'img/minecraft_4.png',
+    'img/minecraft_5.png',
+    'img/minecraft_6.png',
+    'img/minecraft_7.png',
+    'img/minecraft_8.png',
+    'img/minecraft_9.png',
+    'img/minecraft_10.png',
+    'img/minecraft_11.png',
+    'img/minecraft_12.png',
+    'img/minecraft_13.png',
+    'img/creeper.mp4',
+    // Add more image URLs as needed
+  ];
+
+  let currentIndex = 0;
+
+  // Function to change background on click
+  function changeBackground() {
+    console.log('Clicked!')
+    if (currentIndex < mediaList.length-1){
+        document.body.style.backgroundImage = `url(${mediaList[currentIndex]})`;
+ 
+        // Increment index or reset to 0
+        currentIndex = (currentIndex + 1) % mediaList.length;
+    } else {
+        document.removeEventListener('click', changeBackground);
+        playVideo();
+    }
+  }
+
+  function playVideo() {
+    const videoElement = document.createElement('video');
+    videoElement.src = mediaList[currentIndex];
+    videoElement.autoplay = true;
+    videoElement.loop = false;
+    videoElement.muted = false;
+    videoElement.style.width = '100%';
+    videoElement.style.height = '100%';
+
+    document.body.appendChild(videoElement);
+  }
+
+  // Attach the function to the click event
+  document.addEventListener('click', changeBackground);
+</script>
+
+</body>
+</html>

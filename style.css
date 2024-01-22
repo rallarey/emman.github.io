@@ -1,0 +1,4 @@
+body {
+    background-size: cover;
+    transition: background 0.5s ease;
+}
